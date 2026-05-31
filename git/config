@@ -1,0 +1,23 @@
+[user]
+	email = cummingsben097@gmail.com
+	name = bncummings
+	signingkey = ~/.ssh/id_rsa.pub
+
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+
+[core]
+	autocrlf = input
+	editor = code --wait
+
+[init]
+	defaultBranch = main
+
+[gpg]
+	format = ssh
+    
+[commit]
+	gpgsign = true
