@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Load OS-specific configuration
 case "$(uname -s)" in
   Darwin)
