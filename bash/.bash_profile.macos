@@ -1,0 +1,8 @@
+# Homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# PATH config
+export PATH="$HOME/.elan/bin:$PATH"                                         # Elan
+export PATH="/Library/Frameworks/Python.framework/Versions/3.13/bin/:$PATH" # Python
+export PATH="/opt/homebrew/opt/llvm@18/bin:$PATH"                           # Homebrew LLVM
+export PATH="$HOME/.antigravity-ide/antigravity-ide/bin:$PATH"              # Anti-Gravity

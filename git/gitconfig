@@ -1,3 +1,7 @@
+# OS-specific (if needed)
+[include]
+	#path = ~/.gitconfig.macos
+
 [user]
 	email = cummingsben097@gmail.com
 	name = bncummings
