@@ -1,11 +1,10 @@
-# OS-specific (if needed)
 [include]
-	#path = ~/.gitconfig.macos
+	path = ~/.gitconfig.macos
+	path = ~/.gitconfig.linux
 
 [user]
 	email = cummingsben097@gmail.com
 	name = bncummings
-	signingkey = ~/.ssh/id_rsa.pub
 
 [filter "lfs"]
 	process = git-lfs filter-process
