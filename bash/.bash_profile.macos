@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Starship
+eval "$(starship init bash)"
+
 # Homebrew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
@@ -8,3 +11,6 @@ export PATH="$HOME/.elan/bin:$PATH"                                         # El
 export PATH="/Library/Frameworks/Python.framework/Versions/3.13/bin/:$PATH" # Python
 export PATH="/opt/homebrew/opt/llvm@18/bin:$PATH"                           # Homebrew LLVM
 export PATH="$HOME/.antigravity-ide/antigravity-ide/bin:$PATH"              # Anti-Gravity
+
+# For testing
+export MACOS_BASH_PROFILE_LOADED="true"

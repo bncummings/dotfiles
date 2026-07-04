@@ -1,1 +1,4 @@
 #!/bin/bash
+
+# For testing
+export LINUX_BASH_PROFILE_LOADED="true"

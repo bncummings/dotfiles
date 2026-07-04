@@ -3,23 +3,23 @@ DOTFILES_DIR := $(shell pwd)
 OS := $(shell uname -s)
 XDG_CONFIG_HOME ?= $(HOME)/.config
 
-.PHONY: all clean help install
+.PHONY: all clean help install bash git ghostty
 
-all: bash git tmux ghostty
+all: bash git ghostty
 
 install:
-	ifeq ($(OS),Darwin)
-		brew bundle --file=$(DOTFILES_DIR)/Brewfile
-	else ifeq ($(OS),Linux)
-		sudo apt-get update
-		xargs -a $(DOTFILES_DIR)/Aptfile sudo apt-get install -y
-	else
-		@echo "Unsupported OS"
-	endif
+	@if [ "$(OS)" = "Darwin" ]; then \
+		brew bundle --file=$(DOTFILES_DIR)/Brewfile; \
+	elif [ "$(OS)" = "Linux" ]; then \
+		sudo apt-get update; \
+		xargs -a $(DOTFILES_DIR)/Aptfile sudo apt-get install -y; \
+	else \
+		echo "Unsupported OS"; \
+	fi
 
 bash:
-	ln -sfn $(DOTFILES_DIR)/bash/bashrc $(HOME)/.bashrc
-	ln -sfn $(DOTFILES_DIR)/bash/bash_profile $(HOME)/.bash_profile
+	ln -sfn $(DOTFILES_DIR)/bash/.bashrc $(HOME)/.bashrc
+	ln -sfn $(DOTFILES_DIR)/bash/.bash_profile $(HOME)/.bash_profile
 
 ghostty:
 	ln -sfn $(DOTFILES_DIR)/ghostty/config $(XDG_CONFIG_HOME)/ghostty/config
@@ -27,12 +27,14 @@ ghostty:
 git:
 	ln -sfn $(DOTFILES_DIR)/git/gitconfig $(HOME)/.gitconfig
 
-tmux:
-	ln -sfn $(DOTFILES_DIR)/tmux/tmux.conf $(HOME)/.tmux.conf
-
 clean:
 	rm -f $(HOME)/.bashrc $(HOME)/.bash_profile $(HOME)/.gitconfig $(HOME)/.tmux.conf
 	rm -f $(XDG_CONFIG_HOME)/ghostty/config
+
+verify:
+	echo LINUX_BASH_PROFILE_LOADED: $$LINUX_BASH_PROFILE_LOADED
+	echo MACOS_BASH_PROFILE_LOADED: $$MACOS_BASH_PROFILE_LOADED
+	echo BASH_RC_LOADED: $$BASH_RC_LOADED
 
 help:
 	@echo "Usage: make [target]"
