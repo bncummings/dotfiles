@@ -5,7 +5,7 @@ XDG_CONFIG_HOME ?= $(HOME)/.config
 
 .PHONY: all clean help install bash git ghostty
 
-all: bash git ghostty
+all: bash git ghostty done
 
 install:
 	@if [ "$(OS)" = "Darwin" ]; then \
@@ -28,13 +28,16 @@ git:
 	ln -sfn $(DOTFILES_DIR)/git/gitconfig $(HOME)/.gitconfig
 
 clean:
-	rm -f $(HOME)/.bashrc $(HOME)/.bash_profile $(HOME)/.gitconfig $(HOME)/.tmux.conf
-	rm -f $(XDG_CONFIG_HOME)/ghostty/config
+	@rm -f $(HOME)/.bashrc $(HOME)/.bash_profile $(HOME)/.gitconfig $(HOME)/.tmux.conf
+	@rm -f $(XDG_CONFIG_HOME)/ghostty/config
 
 verify:
-	echo LINUX_BASH_PROFILE_LOADED: $$LINUX_BASH_PROFILE_LOADED
-	echo MACOS_BASH_PROFILE_LOADED: $$MACOS_BASH_PROFILE_LOADED
-	echo BASH_RC_LOADED: $$BASH_RC_LOADED
+	@[ -n "$$LINUX_BASH_PROFILE_LOADED" ] && printf "Linux Bash Profile Loaded Succesfully\n" || true
+	@[ -n "$$MACOS_BASH_PROFILE_LOADED" ] && printf "MacOS Bash Profile Loaded Succesfully\n" || true
+	@[ -n "$$BASH_RC_LOADED" ]			  && printf "Bash RC Loaded Succesfully\n" 			  || true
+
+done: 
+	@echo "Done :P"
 
 help:
 	@echo "Usage: make [target]"
