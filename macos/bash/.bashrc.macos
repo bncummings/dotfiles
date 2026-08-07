@@ -13,4 +13,4 @@ export PATH="/opt/homebrew/opt/llvm@18/bin:$PATH"                           # Ho
 export PATH="$HOME/.antigravity-ide/antigravity-ide/bin:$PATH"              # Anti-Gravity
 
 # For testing
-export MACOS_BASH_PROFILE_LOADED="true"
+export MACOS_BASHRC_LOADED="true"

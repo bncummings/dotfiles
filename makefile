@@ -9,26 +9,33 @@ all: bash git ghostty done
 
 install:
 	@if [ "$(OS)" = "Darwin" ]; then \
-		brew bundle --file=$(DOTFILES_DIR)/Brewfile; \
+		brew bundle --file=$(DOTFILES_DIR)/macos/Brewfile; \
 	elif [ "$(OS)" = "Linux" ]; then \
 		sudo apt-get update; \
-		xargs -a $(DOTFILES_DIR)/Aptfile sudo apt-get install -y; \
+		xargs -a $(DOTFILES_DIR)/linux/Aptfile sudo apt-get install -y; \
 	else \
 		echo "Unsupported OS"; \
 	fi
 
 bash:
-	ln -sfn $(DOTFILES_DIR)/bash/.bashrc $(HOME)/.bashrc
-	ln -sfn $(DOTFILES_DIR)/bash/.bash_profile $(HOME)/.bash_profile
+	ln -sfn $(DOTFILES_DIR)/common/bash/.bashrc $(HOME)/.bashrc-common
+	ln -sfn $(DOTFILES_DIR)/common/bash/.bash_profile $(HOME)/.bash_profile
+	@if [ "$(OS)" = "Darwin" ]; then \
+		ln -sfn $(DOTFILES_DIR)/macos/bash/.bashrc.macos $(HOME)/.bashrc; \
+	elif [ "$(OS)" = "Linux" ]; then \
+		ln -sfn $(DOTFILES_DIR)/linux/bash/.bashrc.linux $(HOME)/.bashrc; \
+	else \
+		echo "Unsupported OS"; \
+	fi
 
 ghostty:
-	ln -sfn $(DOTFILES_DIR)/ghostty/config $(XDG_CONFIG_HOME)/ghostty/config
-	
+	ln -sfn $(DOTFILES_DIR)/common/ghostty/config $(XDG_CONFIG_HOME)/ghostty/config
+
 git:
-	ln -sfn $(DOTFILES_DIR)/git/gitconfig $(HOME)/.gitconfig
+	ln -sfn $(DOTFILES_DIR)/common/git/gitconfig $(HOME)/.gitconfig
 
 clean:
-	@rm -f $(HOME)/.bashrc $(HOME)/.bash_profile $(HOME)/.gitconfig $(HOME)/.tmux.conf
+	@rm -f $(HOME)/.bashrc $(HOME)/.bashrc-common $(HOME)/.bash_profile $(HOME)/.gitconfig $(HOME)/.tmux.conf
 	@rm -f $(XDG_CONFIG_HOME)/ghostty/config
 
 verify:

@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# For testing
+export LINUX_BASHRC_LOADED="true"
