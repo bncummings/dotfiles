@@ -1,0 +1,6 @@
+# Readline rings the terminal bell (BEL) on things like backspace at an
+# empty line or ambiguous tab-completion. Ghostty can't tell that apart
+# from a deliberate BEL (e.g. Claude Code's completion notification), so
+# every stray readline bell was triggering the same border/tab/attention
+# effect. Silencing it here keeps BEL reserved for intentional signals.
+set bell-style none

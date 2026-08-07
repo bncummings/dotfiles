@@ -3,12 +3,9 @@ cursor-style-blink = false
 shell-integration-features = "no-cursor"
 theme = GitLab Dark Grey
 
-# Auto-copy any mouse selection to the system clipboard (not just the
-# X11 primary/middle-click selection, which is the Linux default).
+# Auto-copy any mouse selection to the system clipboard
 copy-on-select = clipboard
 
-# Show a border around a surface (in addition to the default title-bar
-# bell emoji + taskbar attention) until it's refocused, whenever the
-# terminal bell (BEL, \a) fires. Claude Code rings this via
-# preferredNotifChannel = "ghostty" on Notification/Stop events.
-bell-features = border
+# On bell (BEL, \a), border the surface, prepend a bell emoji to its tab
+# title, and request window attention, until refocused. Claude Code rings
+bell-features = border,title,attention

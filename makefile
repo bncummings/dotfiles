@@ -3,40 +3,53 @@ DOTFILES_DIR := $(shell pwd)
 OS := $(shell uname -s)
 XDG_CONFIG_HOME ?= $(HOME)/.config
 
-.PHONY: all clean help install bash git ghostty
+.PHONY: all help install install-macos install-linux bash git ghostty claude
 
-all: bash git ghostty done
+all: install bash git ghostty claude done
 
 install:
 	@if [ "$(OS)" = "Darwin" ]; then \
-		brew bundle --file=$(DOTFILES_DIR)/macos/Brewfile; \
+		$(MAKE) install-macos; \
 	elif [ "$(OS)" = "Linux" ]; then \
-		sudo apt-get update; \
-		xargs -a $(DOTFILES_DIR)/linux/Aptfile sudo apt-get install -y; \
+		$(MAKE) install-linux; \
 	else \
 		echo "Unsupported OS"; \
 	fi
 
+install-macos:
+	brew install git tmux bash
+
+install-linux:
+	sudo bash -c 'apt-get update && apt-get install -y git tmux bash net-tools'
+
 bash:
+	rm -f $(HOME)/.bashrc-common
 	ln -sfn $(DOTFILES_DIR)/common/bash/.bashrc $(HOME)/.bashrc-common
+	rm -f $(HOME)/.bash_profile
 	ln -sfn $(DOTFILES_DIR)/common/bash/.bash_profile $(HOME)/.bash_profile
+	rm -f $(HOME)/.inputrc
+	ln -sfn $(DOTFILES_DIR)/common/bash/.inputrc $(HOME)/.inputrc
 	@if [ "$(OS)" = "Darwin" ]; then \
+		rm -f $(HOME)/.bashrc; \
 		ln -sfn $(DOTFILES_DIR)/macos/bash/.bashrc.macos $(HOME)/.bashrc; \
 	elif [ "$(OS)" = "Linux" ]; then \
+		rm -f $(HOME)/.bashrc; \
 		ln -sfn $(DOTFILES_DIR)/linux/bash/.bashrc.linux $(HOME)/.bashrc; \
 	else \
 		echo "Unsupported OS"; \
 	fi
 
 ghostty:
+	rm -f $(XDG_CONFIG_HOME)/ghostty/config
 	ln -sfn $(DOTFILES_DIR)/common/ghostty/config $(XDG_CONFIG_HOME)/ghostty/config
 
 git:
+	rm -f $(HOME)/.gitconfig
 	ln -sfn $(DOTFILES_DIR)/common/git/gitconfig $(HOME)/.gitconfig
 
-clean:
-	@rm -f $(HOME)/.bashrc $(HOME)/.bashrc-common $(HOME)/.bash_profile $(HOME)/.gitconfig $(HOME)/.tmux.conf
-	@rm -f $(XDG_CONFIG_HOME)/ghostty/config
+claude:
+	rm -f $(HOME)/.claude/settings.json
+	ln -sfn $(DOTFILES_DIR)/.claude/settings.json $(HOME)/.claude/settings.json
 
 verify:
 	@[ -n "$$LINUX_BASH_PROFILE_LOADED" ] && printf "Linux Bash Profile Loaded Succesfully\n" || true
@@ -50,8 +63,9 @@ help:
 	@echo "Usage: make [target]"
 	@echo "Targets:"
 	@echo "  all      - Link all configurations (default)"
-	@echo "  install  - Install packages (uses Brewfile on macOS, Aptfile on Linux)"
+	@echo "  install  - Install packages (dispatches to install-macos or install-linux)"
+	@echo "  install-macos - Install packages via brew"
+	@echo "  install-linux - Install packages via apt-get"
 	@echo "  bash     - Link bash files"
 	@echo "  git      - Link git configuration"
 	@echo "  tmux     - Link tmux configuration"
-	@echo "  clean    - Remove symlinks"

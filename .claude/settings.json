@@ -1,0 +1,9 @@
+{
+  "promptSuggestionEnabled": false,
+  "theme": "auto",
+  "notifications": true,
+  "verbose": true,
+  "switchModelsOnFlag": false,
+  "useAutoModeDuringPlan": true,
+  "preferredNotifChannel": "ghostty"
+}
