@@ -1,9 +1,31 @@
 {
-  "promptSuggestionEnabled": false,
-  "theme": "auto",
+  "autoUpdatesChannel": "stable",
+  "autoCompactThreshold": 80,
+  "model": "claude-opus-4-8",
   "notifications": true,
-  "verbose": true,
+  "promptSuggestionEnabled": false,
+  "preferredNotifChannel": "ghostty",
   "switchModelsOnFlag": false,
+  "theme": "dark",
   "useAutoModeDuringPlan": true,
-  "preferredNotifChannel": "ghostty"
+  "verbose": true,
+
+  "bash": {
+    "allowedCommands": [
+      "npm test",
+      "npm run lint",
+      "git status",
+      "git diff",
+      "ls",
+      "cat",
+      "echo"
+    ],
+    "deniedCommands": [
+      "rm -rf",
+      "git push --force",
+      "sudo",
+      "DROP TABLE",
+      "truncate"
+    ]
+  }
 }
