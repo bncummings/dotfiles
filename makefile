@@ -5,7 +5,7 @@ XDG_CONFIG_HOME ?= $(HOME)/.config
 
 .PHONY: all help install install-macos install-linux bash git ghostty claude
 
-all: install bash git ghostty claude done
+all: install bash git ghostty claude verify done
 
 install:
 	@if [ "$(OS)" = "Darwin" ]; then \
@@ -23,12 +23,11 @@ install-linux:
 	sudo bash -c 'apt-get update && apt-get install -y git tmux bash net-tools'
 
 bash:
-	rm -f $(HOME)/.bashrc-common
-	ln -sfn $(DOTFILES_DIR)/common/bash/.bashrc $(HOME)/.bashrc-common
+	rm -f $(HOME)/.bashrc
+	ln -sfn $(DOTFILES_DIR)/common/bash/.bashrc $(HOME)/.bashrc
 	rm -f $(HOME)/.bash_profile
 	ln -sfn $(DOTFILES_DIR)/common/bash/.bash_profile $(HOME)/.bash_profile
-	rm -f $(HOME)/.inputrc
-	ln -sfn $(DOTFILES_DIR)/common/bash/.inputrc $(HOME)/.inputrc
+
 	@if [ "$(OS)" = "Darwin" ]; then \
 		rm -f $(HOME)/.bashrc; \
 		ln -sfn $(DOTFILES_DIR)/macos/bash/.bashrc.macos $(HOME)/.bashrc; \

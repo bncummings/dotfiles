@@ -6,7 +6,6 @@ export DOTFILES
 [ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
 
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
 
 alias beeper="$HOME/app-images/Beeper-4.3.0-x86_64.AppImage --no-sandbox"
 

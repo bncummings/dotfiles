@@ -2,3 +2,16 @@
 
 # For testing
 export LINUX_BASHRC_LOADED="true"
+
+ports() {
+	sudo netstat -tulnp | awk '
+	NR<=2 { next }
+	{
+		if ($1 ~ /^udp/) { local=$4; foreign=$5; state="-"; prog=$6 }
+		else              { local=$4; foreign=$5; state=$6;  prog=$7 }
+		n = split(local, a, ":")
+		port = a[n]
+		host = substr(local, 1, length(local)-length(port)-1)
+		printf "%s\t%20s:%-6s %-22s %-12s %s\n", port, host, port, foreign, state, prog
+	}' | sort -n -k1,1 | cut -f2-
+}
