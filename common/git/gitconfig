@@ -6,6 +6,14 @@
 	email = cummingsben097@gmail.com
 	name = bncummings
 
+[alias]
+	co = checkout
+	cob = checkout -b
+	br = branch
+	cm = commit -m
+	st = status
+	amend = commit --amend --no-edit
+
 [filter "lfs"]
 	process = git-lfs filter-process
 	required = true

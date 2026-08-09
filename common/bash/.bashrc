@@ -8,6 +8,7 @@ export DOTFILES
 export PATH="$HOME/.local/bin:$PATH"
 
 alias beeper="$HOME/app-images/Beeper-4.3.0-x86_64.AppImage --no-sandbox"
+alias gti="git"
 
 # Load OS-specific configuration
 case "$(uname -s)" in
