@@ -28,16 +28,6 @@ bash:
 	rm -f $(HOME)/.bash_profile
 	ln -sfn $(DOTFILES_DIR)/common/bash/.bash_profile $(HOME)/.bash_profile
 
-	@if [ "$(OS)" = "Darwin" ]; then \
-		rm -f $(HOME)/.bashrc; \
-		ln -sfn $(DOTFILES_DIR)/macos/bash/.bashrc.macos $(HOME)/.bashrc; \
-	elif [ "$(OS)" = "Linux" ]; then \
-		rm -f $(HOME)/.bashrc; \
-		ln -sfn $(DOTFILES_DIR)/linux/bash/.bashrc.linux $(HOME)/.bashrc; \
-	else \
-		echo "Unsupported OS"; \
-	fi
-
 ghostty:
 	rm -f $(XDG_CONFIG_HOME)/ghostty/config
 	ln -sfn $(DOTFILES_DIR)/common/ghostty/config $(XDG_CONFIG_HOME)/ghostty/config
