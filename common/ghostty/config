@@ -5,7 +5,3 @@ theme = GitLab Dark Grey
 
 # Auto-copy any mouse selection to the system clipboard
 copy-on-select = clipboard
-
-# On bell (BEL, \a), border the surface, prepend a bell emoji to its tab
-# title, and request window attention, until refocused. Claude Code rings
-bell-features = border,title,attention
