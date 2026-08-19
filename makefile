@@ -3,9 +3,15 @@ DOTFILES_DIR := $(shell pwd)
 OS := $(shell uname -s)
 XDG_CONFIG_HOME ?= $(HOME)/.config
 
-.PHONY: all help install install-macos install-linux bash git ghostty claude
+.PHONY: all help install install-macos install-linux bash git ghostty claude vscode
 
-all: install bash git ghostty claude verify done
+ifeq ($(OS),Darwin)
+VSCODE_USER_DIR := $(HOME)/Library/Application Support/Code/User
+else
+VSCODE_USER_DIR := $(XDG_CONFIG_HOME)/Code/User
+endif
+
+all: install bash git ghostty claude vscode verify done
 
 install:
 	@if [ "$(OS)" = "Darwin" ]; then \
@@ -40,6 +46,11 @@ claude:
 	rm -f $(HOME)/.claude/settings.json
 	ln -sfn $(DOTFILES_DIR)/.claude/settings.json $(HOME)/.claude/settings.json
 
+vscode:
+	mkdir -p "$(VSCODE_USER_DIR)"
+	rm -f "$(VSCODE_USER_DIR)/settings.json"
+	ln -sfn $(DOTFILES_DIR)/common/vscode/settings.json "$(VSCODE_USER_DIR)/settings.json"
+
 verify:
 	@[ -n "$$LINUX_BASH_PROFILE_LOADED" ] && printf "Linux Bash Profile Loaded Succesfully\n" || true
 	@[ -n "$$MACOS_BASH_PROFILE_LOADED" ] && printf "MacOS Bash Profile Loaded Succesfully\n" || true
@@ -58,3 +69,4 @@ help:
 	@echo "  bash     - Link bash files"
 	@echo "  git      - Link git configuration"
 	@echo "  tmux     - Link tmux configuration"
+	@echo "  vscode   - Link VSCode settings"

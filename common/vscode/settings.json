@@ -1,0 +1,31 @@
+{
+    "chat.titleBar.openInAgentsWindow.enabled": false,
+
+    "editor.cursorBlinking": "smooth",
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.cursorStyle": "block",
+    "editor.fontFamily": "JetBrains Mono",
+    "editor.fontLigatures": true,
+    "editor.inlineSuggest.edits.showCollapsed": true,
+
+    "files.autoSave": "afterDelay",
+    "files.watcherExclude": {
+        "**/.bloop": true,
+        "**/.metals": true
+    },
+
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": false,
+        "scminput": false,
+        "haskell": false
+    },
+
+    "workbench.colorTheme": "GitHub Dark",
+    "workbench.statusBar.visible": false,
+    "workbench.editor.showTabs": "single",
+    "workbench.experimental.modernUI": false,
+    "workbench.editor.titleScrollbarVisibility": "hidden",
+
+    "zenMode.showTabs": "none"
+}
