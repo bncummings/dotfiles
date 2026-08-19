@@ -6,11 +6,15 @@ eval "$(starship init bash)"
 # Homebrew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
+# C++
+export GCC_VERSION=16
+export CPP_LANG_VERSION=23
+alias gpp="g++-$GCC_VERSION -std=c++$CPP_LANG_VERSION -Wall -Wextra -Wpedantic -Werror -O2"
+
 # PATH config
-export PATH="$HOME/.elan/bin:$PATH"                                         # Elan
-export PATH="/Library/Frameworks/Python.framework/Versions/3.13/bin/:$PATH" # Python
-export PATH="/opt/homebrew/opt/llvm@18/bin:$PATH"                           # Homebrew LLVM
-export PATH="$HOME/.antigravity-ide/antigravity-ide/bin:$PATH"              # Anti-Gravity
+export PATH="$HOME/.elan/bin:$PATH"
+export PATH="/Library/Frameworks/Python.framework/Versions/3.13/bin/:$PATH"
+export PATH="$HOME/.antigravity-ide/antigravity-ide/bin:$PATH"
 
 # For testing
 export MACOS_BASHRC_LOADED="true"

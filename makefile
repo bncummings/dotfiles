@@ -23,7 +23,7 @@ install:
 	fi
 
 install-macos:
-	brew install git tmux bash
+	brew install git tmux bash gcc
 
 install-linux:
 	sudo bash -c 'apt-get update && apt-get install -y git tmux bash net-tools'

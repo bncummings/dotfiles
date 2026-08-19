@@ -8,6 +8,9 @@
     "editor.fontLigatures": true,
     "editor.inlineSuggest.edits.showCollapsed": true,
 
+    "C_Cpp.default.compilerPath": "/opt/homebrew/bin/g++-16",
+    "C_Cpp.default.cppStandard": "c++23",
+
     "files.autoSave": "afterDelay",
     "files.watcherExclude": {
         "**/.bloop": true,
