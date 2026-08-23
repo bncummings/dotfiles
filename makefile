@@ -24,6 +24,7 @@ install:
 
 install-macos:
 	brew install git tmux bash gcc
+	brew install --cask temurin@21 temurin@17
 
 install-linux:
 	sudo bash -c 'apt-get update && apt-get install -y git tmux bash net-tools'
