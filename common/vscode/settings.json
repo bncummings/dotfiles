@@ -70,6 +70,7 @@
     "workbench.editor.showTabs": "single",
     "workbench.experimental.modernUI": false,
     "workbench.editor.titleScrollbarVisibility": "hidden",
+    "workbench.secondarySideBar.defaultVisibility": "hidden",
 
     "zenMode.showTabs": "none"
 }
