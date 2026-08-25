@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# git script for cmd prompt
+export GIT_PROMPT_SH="/usr/lib/git-core/git-sh-prompt"
+
 # For testing
 export LINUX_BASHRC_LOADED="true"
 

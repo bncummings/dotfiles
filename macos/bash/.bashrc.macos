@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Starship
-eval "$(starship init bash)"
-
 # Homebrew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
@@ -15,6 +12,9 @@ alias gpp="g++-$GCC_VERSION -std=c++$CPP_LANG_VERSION -Wall -Wextra -Wpedantic -
 export PATH="$HOME/.elan/bin:$PATH"
 export PATH="/Library/Frameworks/Python.framework/Versions/3.13/bin/:$PATH"
 export PATH="$HOME/.antigravity-ide/antigravity-ide/bin:$PATH"
+
+# git script for cmd prompt
+export GIT_PROMPT_SH="/opt/homebrew/opt/git/etc/bash_completion.d/git-prompt.sh"
 
 # For testing
 export MACOS_BASHRC_LOADED="true"
